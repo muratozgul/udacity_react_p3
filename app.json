@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "sdkVersion": "21.0.0",
+    "name": "UdaciCards",
+    "description": "Flashcards",
+    "slug": "murat-udacity-flashcards",
+    "privacy": "unlisted",
+    "version": "1.0.0",
+    "orientation": "portrait"
+  }
+}
