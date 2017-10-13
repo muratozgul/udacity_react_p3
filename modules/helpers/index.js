@@ -12,11 +12,11 @@ export const isNonBlankString = (str) => {
   return _.isString(str) && str.trim().length > 0;
 };
 
-export const iterateMap = (map, func = v => v) => {
+export const iterateMap = (map, func = (k, v) => v) => {
   const arr = [];
-  const mapIter = map.values();
-  for (var v of mapIter) {
-    arr.push(func(v));
+  const mapIter = map.entries();
+  for (var pair of mapIter) {
+    arr.push(func(pair[0], pair[1]));
   }
   return arr;
 }
