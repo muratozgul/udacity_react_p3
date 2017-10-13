@@ -5,11 +5,13 @@ import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 import { Button } from 'react-native-elements';
 import AppLoadingScreen from './AppLoadingScreen';
 import DeckList from '../modules/decks/containers/DeckListContainer';
+import DeckDetail from '../modules/decks/containers/DeckDetailContainer';
+import Quiz from '../modules/decks/containers/QuizContainer';
 import { showEnterDeckNameModal } from '../modules/decks/redux/deckFormStore';
 
 export const AppNavigator = StackNavigator({
   AppLoading: { screen: AppLoadingScreen },
-  Decks: {
+  DeckList: {
     screen: DeckList,
     navigationOptions: ({ navigation, screenProps }) => ({
       title: 'Decks',
@@ -20,6 +22,18 @@ export const AppNavigator = StackNavigator({
         />
       )
     })
+  },
+  DeckDetail: {
+    screen: DeckDetail,
+    navigationOptions: {
+      title: 'Deck Details'
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      title: 'Quiz'
+    }
   }
 }, {
   initialRouteName: 'AppLoading'

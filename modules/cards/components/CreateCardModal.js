@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
-import { View, Modal, TextInput } from 'react-native';
+import { View, Modal } from 'react-native';
 import { modalStyle as styles } from './styles';
 
-class TextInputModal extends Component {
+class CreateCardModal extends Component {
   /****************************************************************************/
   // Event Handlers
   /****************************************************************************/
-  onChangeText = (text) => {
-    this.props.onChangeText(text);
+  onChangeQuestion = (text) => {
+    this.props.onChangeQuestion(text);
+  }
+
+  onChangeAnswer = (text) => {
+    this.props.onChangeAnswer(text);
   }
 
   onSubmit = () => {
@@ -34,10 +38,16 @@ class TextInputModal extends Component {
       >
         <View style={styles.modalWrapper}>
           <View style={styles.modal}>
-            <FormLabel>{this.props.label}</FormLabel>
+            <FormLabel>{'Question'}</FormLabel>
             <FormInput
-              value={this.props.input}
-              onChangeText={this.onChangeText}
+              value={this.props.question}
+              onChangeText={this.onChangeQuestion}
+              inputStyle={styles.input}
+            />
+            <FormLabel>{'Answer'}</FormLabel>
+            <FormInput
+              value={this.props.answer}
+              onChangeText={this.onChangeAnswer}
               inputStyle={styles.input}
             />
             {
@@ -67,14 +77,19 @@ class TextInputModal extends Component {
   }
 }
 
-TextInputModal.propTypes = {
+CreateCardModal.propTypes = {
+  show: PropTypes.bool,
   onCancel: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  onChangeText: PropTypes.func.isRequired,
+  question: PropTypes.string.isRequired,
+  answer: PropTypes.string.isRequired,
+  onChangeQuestion: PropTypes.func.isRequired,
+  onChangeAnswer: PropTypes.func.isRequired,
   error: PropTypes.object
 };
 
-TextInputModal.defaultProps = {
+CreateCardModal.defaultProps = {
+  show: false
 };
 
-export default TextInputModal;
+export default CreateCardModal;

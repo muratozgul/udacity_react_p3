@@ -23,6 +23,15 @@ export const listItemStyle = StyleSheet.create({
   }
 });
 
+export const detailStyle = StyleSheet.create({
+  startQuizButton: {
+    backgroundColor: '#f4731c', marginTop: 10
+  },
+  addCardButton: {
+    marginTop: 10
+  }
+});
+
 export const modalStyle = StyleSheet.create({
   modalWrapper: {
     flex: 1, backgroundColor: 'rgba(0,0,0,0.4)'

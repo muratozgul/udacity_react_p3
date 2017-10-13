@@ -5,7 +5,8 @@ import thunk from 'redux-thunk';
 import asyncDispatchMiddleware from './asyncDispatchMiddleware'
 import { rehydrateReducer } from './rehydrateStore';
 import { navReducerWithCurrentRouteName } from '../navigation/navStore';
-import { decksReducer, deckFormReducer } from '../modules/decks/redux';
+import { decksReducer, deckFormReducer, quizReducer } from '../modules/decks/redux';
+import { cardsReducer, cardFormReducer } from '../modules/cards/redux';
 
 export const initializeStore = (initialState) => {
   const middlewares = [thunk, asyncDispatchMiddleware];
@@ -13,7 +14,10 @@ export const initializeStore = (initialState) => {
     rehydrate: rehydrateReducer,
     nav: navReducerWithCurrentRouteName,
     decks: decksReducer,
-    deckForm: deckFormReducer
+    deckForm: deckFormReducer,
+    cards: cardsReducer,
+    cardForm: cardFormReducer,
+    quiz: quizReducer
   });
   // @see https://github.com/jhen0409/react-native-debugger#options
   const enhancer = composeWithDevTools({})(applyMiddleware(...middlewares));

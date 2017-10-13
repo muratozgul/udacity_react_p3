@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { List, ListItem, Badge } from 'react-native-elements';
-import { View, ActivityIndicator, Text, FlatList } from 'react-native';
+import { ListItem } from 'react-native-elements';
+import { View, Text, FlatList } from 'react-native';
 import { iterateMap } from '../../helpers';
 import { listStyle as styles } from './styles';
 import DeckListItem from './DeckListItem';
-import TextInputModal from './TextInputModal';
+import CreateDeckModal from './CreateDeckModal';
 
 class DeckList extends Component {
   constructor(props) {
@@ -18,29 +18,10 @@ class DeckList extends Component {
   }
 
   /****************************************************************************/
-  // Event Handlers
-  /****************************************************************************/
-  onEnterDeckName = (password) => {
-    if (password === 'admin') {
-      this.props.toggleShowAdminOptions(true);
-      this.onCloseEnterPasswordModal();
-    } else {
-      this.setState({ enterPasswordError: new Error('Incorrect password.') });
-    }
-  }
-
-  onCloseEnterDeckNameModal = () => {
-    this.setState({
-      showEnterPasswordModal: false,
-      enterPasswordError: null
-    });
-  }
-
-  /****************************************************************************/
   // Render
   /****************************************************************************/
   renderDeckListItem = ({item}) => {
-    return <DeckListItem deck={item} />;
+    return <DeckListItem deck={item} onPress={this.props.selectDeck} />;
   }
 
   renderEmpty() {
@@ -67,7 +48,7 @@ class DeckList extends Component {
     return (
       <View style={styles.listWrapper}>
         { this.props.decks.size === 0 ? this.renderEmpty() : this.renderList() }
-        <TextInputModal
+        <CreateDeckModal
           label='Enter Deck Name'
           show={this.props.showEnterDeckNameModal}
           input={this.props.input}
@@ -83,7 +64,8 @@ class DeckList extends Component {
 
 DeckList.propTypes = {
   decks: PropTypes.instanceOf(Map),
-  showEnterDeckNameModal: PropTypes.bool
+  showEnterDeckNameModal: PropTypes.bool,
+  selectDeck: PropTypes.func.isRequired
 };
 
 DeckList.defaultProps = {

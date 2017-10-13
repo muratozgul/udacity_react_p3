@@ -13,6 +13,7 @@ class DeckListItem extends Component {
         title={deck.name}
         subtitle={`${deck.cards.length} cards`}
         containerStyle={styles.container}
+        onPress={() => this.props.onPress(deck.id)}
       />
     );
   }

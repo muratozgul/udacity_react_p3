@@ -33,7 +33,7 @@ export const onAppDidMount = (APP) => {
     const navAction = NavigationActions.reset({
       index: 0,
       key: null,
-      actions: [NavigationActions.navigate({ routeName: 'Decks' })]
+      actions: [NavigationActions.navigate({ routeName: 'DeckList' })]
     });
     APP.store.dispatch(navAction);
   });
