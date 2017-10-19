@@ -4,11 +4,11 @@ import { persistStore, createTransform } from 'redux-persist';
 import { NavigationActions } from 'react-navigation';
 import { initializeStore } from './redux';
 import { iterateMap } from './modules/helpers';
+import { clearLocalNotification, setLocalNotification } from './modules/helpers/pushNotifications';
 
 const transformMapObjects = createTransform(
   (state) => {
     // memory -> storage
-    console.log('writing', state);
     const mapObjects = Object.keys(state).filter(key => {
       return state[key] instanceof Map;
     });
@@ -20,7 +20,6 @@ const transformMapObjects = createTransform(
   },
   (state) => {
     // storage -> memory
-    console.log('reading', state);
     const mapObjects = Object.keys(state).filter(key => {
       return _.get(state[key], '__typename') === 'Map';
     });
@@ -36,7 +35,6 @@ const transformMapObjects = createTransform(
 const persistStoreOptions = {
   storage: AsyncStorage,
   transforms: [transformMapObjects],
-  // whitelist: []
   blacklist: ['rehydrate', 'nav']
 };
 
@@ -60,6 +58,7 @@ export const onInitializeApp = () => {
 export const onAppDidMount = (APP) => {
   console.log('[onAppDidMount]');
   APP.persistor = initializePersistStore(APP.store, () => {
+    setLocalNotification();
     // navigate
     const navAction = NavigationActions.reset({
       index: 0,

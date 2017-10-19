@@ -3,6 +3,10 @@ import { InteractionManager } from 'react-native';
 import { NavigationActions, Alert } from 'react-navigation';
 import { createSelector } from 'reselect';
 import { createActions } from '../../helpers';
+import {
+  setLocalNotification,
+  clearLocalNotification
+} from '../../helpers/pushNotifications';
 
 /******************************************************************************/
 // Initialization
@@ -62,7 +66,10 @@ export const closeQuiz = () => {
 };
 
 export const endQuiz = () => {
-  return { type: actions.END };
+  return (dispatch, getState) => {
+    clearLocalNotification().then(setLocalNotification);
+    dispatch({ type: actions.END });
+  };
 };
 
 export const answerCorrect = () => {
