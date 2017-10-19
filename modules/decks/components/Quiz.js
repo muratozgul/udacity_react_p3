@@ -57,10 +57,17 @@ class Quiz extends Component {
         </View>
         <Button
           raised
+          buttonStyle={{ marginBottom: 10 }}
+          textStyle={{ textAlign: 'center' }}
+          title={'Back to Deck'}
+          onPress={this.props.closeQuiz}
+        />
+        <Button
+          raised
           buttonStyle={{}}
           textStyle={{ textAlign: 'center' }}
-          title={'Done'}
-          onPress={this.props.closeQuiz}
+          title={'Restart Quiz'}
+          onPress={this.props.restartQuiz}
         />
       </View>
     );
@@ -84,7 +91,8 @@ Quiz.propTypes = {
   deck: PropTypes.object,
   score: PropTypes.number,
   showResults: PropTypes.bool,
-  closeQuiz: PropTypes.func.isRequired
+  closeQuiz: PropTypes.func.isRequired,
+  restartQuiz: PropTypes.func.isRequired
 };
 
 Quiz.defaultProps = {

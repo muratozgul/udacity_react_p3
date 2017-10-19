@@ -20,7 +20,7 @@ class DeckDetail extends Component {
             raised
             buttonStyle={styles.addCardButton}
             textStyle={{ textAlign: 'center' }}
-            title={'Add Card'}
+            title={'Add New Question'}
             onPress={this.props.showModal}
           />
           <Button

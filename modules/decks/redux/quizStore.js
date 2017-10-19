@@ -34,19 +34,21 @@ export const reset = () => {
   return { type: actions.RESET };
 };
 
-export const startQuiz = () => {
+export const startQuiz = (route = true) => {
   return (dispatch, getState) => {
     const { selectedDeckId, decks } = getState().decks;
     if (selectedDeckId && decks.has(selectedDeckId)) {
       const deck = decks.get(selectedDeckId);
       if (deck.cards.length > 0) {
         dispatch({ type: actions.START, deck });
-        const navAction = NavigationActions.navigate({
-          routeName: 'Quiz'
-        });
-        InteractionManager.runAfterInteractions(() => {
-          dispatch(navAction);
-        });
+        if (route) {
+          const navAction = NavigationActions.navigate({
+            routeName: 'Quiz'
+          });
+          InteractionManager.runAfterInteractions(() => {
+            dispatch(navAction);
+          });
+        }
       } else {
         Alert.alert('Deck has no cards', 'Please add cards to the deck to start the quiz');
       }
@@ -54,6 +56,10 @@ export const startQuiz = () => {
       Alert.alert('Error', 'Something went wrong.');
     }
   };
+};
+
+export const restartQuiz = () => {
+  return startQuiz(false);
 };
 
 export const closeQuiz = () => {
