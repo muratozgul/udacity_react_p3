@@ -1,3 +1,9 @@
+### Quick start
+* (one time) npm install -g exp
+* ```yarn install```
+* ```yarn start```
+* From your phone, open Expo Client & scan the barcode shown in terminal
+
 ### How to run (dev)
 * Install [Yarn](https://yarnpkg.com/en/), then run ```yarn install```
 * Install [Expo](https://docs.expo.io/versions/latest/introduction/installation.html) to your Mac

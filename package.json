@@ -4,6 +4,7 @@
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "start": "exp start",
     "storybook": "storybook start -p 7007",
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001'",
     "eslint": "./node_modules/.bin/eslint . --ext .js --quiet"
