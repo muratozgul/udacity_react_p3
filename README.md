@@ -1,3 +1,5 @@
+(Tested only in iPhone)
+
 ### Quick start
 * (one time) npm install -g exp
 * ```yarn install```
