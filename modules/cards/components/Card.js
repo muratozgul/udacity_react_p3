@@ -25,8 +25,17 @@ class Card extends Component {
     return (
       <View>
         <View style={{ alignItems: 'center' }}>
-          <Text>{showAnswer ? 'Answer' : 'Question'}</Text>
-          <Text>{showAnswer ? card.answer : card.question}</Text>
+          <Text
+            style={{
+              fontSize: 18, fontWeight: 'bold',
+              textDecorationLine: 'underline'
+            }}
+          >
+            {showAnswer ? 'Answer' : 'Question'}
+          </Text>
+          <Text style={{ fontSize: 22, marginVertical: 20 }}>
+            {showAnswer ? card.answer : card.question}
+          </Text>
         </View>
         <View>
           <Button

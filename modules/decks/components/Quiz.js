@@ -10,7 +10,7 @@ class Quiz extends Component {
   renderInfo() {
     const { deck, currentCardIndex, score } = this.props;
     return (
-      <View style={{ alignItems: 'center' }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
         <Text>Deck: {deck.name}</Text>
         <Text>Card: {`${currentCardIndex + 1}/${deck.cards.length}`}</Text>
         <Text>Score: {score}</Text>
@@ -20,18 +20,22 @@ class Quiz extends Component {
 
   renderQuiz() {
     return (
-      <View>
-        <Card card={this.props.currentCard} />
+      <View style={{ flex: 1}}>
+        {this.renderInfo()}
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          <Card card={this.props.currentCard} />
+        </View>
         <Button
           raised
-          buttonStyle={{}}
+          buttonStyle={{ marginVertical: 20 }}
+          backgroundColor='green'
           textStyle={{ textAlign: 'center' }}
           title={'Correct'}
           onPress={this.props.answerCorrect}
         />
         <Button
           raised
-          buttonStyle={{}}
+          backgroundColor='red'
           textStyle={{ textAlign: 'center' }}
           title={'Incorrect'}
           onPress={this.props.answerIncorrect}
@@ -42,10 +46,14 @@ class Quiz extends Component {
 
   renderResult() {
     return (
-      <View>
+      <View style={{ flex: 1, justifyContent: 'center' }}>
         <View style={{ alignItems: 'center' }}>
-          <Text>No more cards!</Text>
-          <Text>Final score: {this.props.score}</Text>
+          <Text style={{ fontSize: 18 }}>
+            No more cards!
+          </Text>
+          <Text style={{ fontSize: 22, marginVertical: 20, fontWeight: 'bold' }}>
+            Final score: {this.props.score}
+          </Text>
         </View>
         <Button
           raised
@@ -61,8 +69,7 @@ class Quiz extends Component {
   render() {
     const { deck, currentCardIndex, score, showResults } = this.props;
     return (
-      <View style={{ flex: 1, justifyContent: 'space-around' }}>
-        {!showResults && this.renderInfo()}
+      <View style={{ flex: 1, paddingVertical: 20 }}>
         {showResults ? this.renderResult() : this.renderQuiz()}
       </View>
     );
@@ -70,7 +77,14 @@ class Quiz extends Component {
 }
 
 Quiz.propTypes = {
-  currentCard: PropTypes.object
+  currentCardIndex: PropTypes.number,
+  currentCard: PropTypes.object,
+  answerCorrect: PropTypes.func.isRequired,
+  answerIncorrect: PropTypes.func.isRequired,
+  deck: PropTypes.object,
+  score: PropTypes.number,
+  showResults: PropTypes.bool,
+  closeQuiz: PropTypes.func.isRequired
 };
 
 Quiz.defaultProps = {

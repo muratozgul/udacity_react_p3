@@ -24,6 +24,9 @@ export const listItemStyle = StyleSheet.create({
 });
 
 export const detailStyle = StyleSheet.create({
+  container: {
+    flex: 1, justifyContent: 'space-around'
+  },
   startQuizButton: {
     backgroundColor: '#f4731c', marginTop: 10
   },

@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import { InteractionManager } from 'react-native';
-import { NavigationActions, Alert } from 'react-navigation';
+import { InteractionManager, Alert } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { createSelector } from 'reselect';
 import { createActions } from '../../helpers';
 import {

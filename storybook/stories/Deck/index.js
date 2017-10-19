@@ -1,1 +1,2 @@
-import './DeckList';
+import './Quiz';
+import './DeckDetail';

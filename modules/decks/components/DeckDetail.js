@@ -10,9 +10,9 @@ class DeckDetail extends Component {
   render() {
     const { deck } = this.props;
     return (
-      <View style={{ flex: 1, justifyContent: 'space-around' }}>
+      <View style={styles.container}>
         <View style={{ alignItems: 'center' }}>
-          <Text>{deck.name}</Text>
+          <Text style={{ fontSize: 30, fontWeight: 'bold'}}>{deck.name}</Text>
           <Text>{`${deck.cards.length} cards`}</Text>
         </View>
         <View>
@@ -49,7 +49,17 @@ class DeckDetail extends Component {
 }
 
 DeckDetail.propTypes = {
-  deck: PropTypes.object.isRequired
+  deck: PropTypes.object.isRequired,
+  showModal: PropTypes.func.isRequired,
+  startQuiz: PropTypes.func.isRequired,
+  show: PropTypes.bool,
+  answer: PropTypes.string,
+  question: PropTypes.string,
+  onChangeQuestion: PropTypes.func.isRequired,
+  onChangeAnswer: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  error: PropTypes.object
 };
 
 DeckDetail.defaultProps = {
